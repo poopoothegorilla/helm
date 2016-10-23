@@ -85,10 +85,8 @@ func removeRepoLine(out io.Writer, name string, home helmpath.Home) error {
 
 func removeRepoCache(name string, home helmpath.Home) error {
 	if _, err := os.Stat(home.CacheIndex(name)); err == nil {
-		err = os.Remove(home.CacheIndex(name))
-		if err != nil {
-			return err
-		}
+		return os.Remove(home.CacheIndex(name))
 	}
-	return nil
+
+	return err
 }
